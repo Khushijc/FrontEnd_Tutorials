@@ -1,0 +1,100 @@
+/* 
+*{
+    font-family: times new roman;
+}
+.box{
+    background-color: red;
+}
+.heading{
+    color: blue;
+}
+.btn{
+    background-color: green;
+    color: white;
+}
+h1{
+    text-align: center;
+    text-transform: capitalize;
+}
+#outer{
+    font-size: 20px;
+    background-color: yellow;
+    border: 1px dashed black;
+    height: 200px;
+    width: 200px;
+}
+#inner{
+    font-size: 10px;
+    text-align: center;
+    padding:50px 10px 10px 50px;
+}
+#traffic-light{
+    height: 300px;
+    width: 100px;
+    align-items: center;
+    border: 1px solid black;
+    padding: 20px;
+}
+#red{
+    background-color: red;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+#yellow{
+    background-color: yellow;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+#green{
+    background-color: green;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+} */
+/* body{
+    text-align: center;
+ }
+div{
+    height: 50px;
+    width: 200px;
+    border: 1px solid black;
+    display: inline-block;
+}
+#container{
+   width: 700px;
+   height: 300px;
+   display: flex;
+   flex-direction:row;
+   align-items:content;
+}
+#box2{
+    height: 200px;
+    flex-grow: 1;
+}
+#box3{
+    height: 300px;
+    flex-shrink: 1;
+}
+#box{
+    flex-grow: 2;
+} */
+div{
+    height: 50px;
+    width: 200px;
+    background-color: red;
+}
+@media (width: 600px){
+    div{
+        background-color: blue;
+    }
+}
+@media(min-width: 600px){
+    div{
+        background-color: green;
+    }
+}

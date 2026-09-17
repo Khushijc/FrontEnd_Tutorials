@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="students"></div>
+    <script>
+        const students = [
+            { name: "khushi", marks: 22 },
+            { name: "om", marks: 20 },
+            { name: "yog", marks: 25 },
+            { name: "arjun", marks: 23 },
+        ]
+
+        const container = document.getElementById("students")
+        const passedstd=students.filter(std=>std.marks>22).map(std=>std.name)
+        passedstd.forEach((name => {
+            const p = document.createElement("p")
+            p.textContent = name
+            container.appendChild(p)
+        }));
+    </script>
+</body>
+
+</html>

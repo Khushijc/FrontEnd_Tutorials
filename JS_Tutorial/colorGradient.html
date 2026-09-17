@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <button id="mybtn">button1</button>
+        <button id="mybtn2">button2</button>
+        <h2>Copy your code here</h2>
+        <div class="copycode">
+            background-image:linear-gradient(to right,#000,#444)
+        </div>
+    </section>
+    <script>
+        let btn1 = document.getElementById("mybtn")
+        let btn2 = document.getElementById("mybtn2")
+        let codeDiv=document.querySelector(".copycode")
+        
+        let rgb1="#000";
+        let rgb2="#444";
+        const hexValues=()=>{
+            let myHexValue = "0123456789abcdef";
+            let color = "#"
+            for (let i = 0; i < 6; i++) {
+                color = color + myHexValue[Math.floor(Math.random() * 16)]
+            }
+            return color
+        }
+
+        const handleButton1 = () => {
+            rgb1=hexValues()
+            console.log(rgb1)
+            btn1.innerText=rgb1
+            document.body.style.backgroundImage=`linear-gradient(to right,${rgb1},${rgb2})`
+            codeDiv.innerHTML=`background-image:linear-gradient(to right,${rgb1},${rgb2})`
+        }
+        const handleButton2=()=>{
+            rgb2=hexValues()
+            console.log(rgb2)
+            btn2.innerText=rgb2
+            document.body.style.backgroundImage=`linear-gradient(to right,${rgb1},${rgb2})`
+            codeDiv.innerHTML=`background-image:linear-gradient(to right,${rgb1},${rgb2})`
+        }
+
+        btn1.addEventListener("click", handleButton1)
+        btn2.addEventListener("click", handleButton2)
+        codeDiv.addEventListener("click",()=>{
+            navigator.clipboard.writeText(codeDiv.innerText)
+        })
+    </script>
+</body>
+
+</html>

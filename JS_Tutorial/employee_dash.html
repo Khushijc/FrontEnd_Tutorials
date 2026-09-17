@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="emp"></div>
+</body>
+<script>
+    const employees = [
+        { name: "A", salary: 50000, department: "IT" },
+        { name: "B", salary: 40000, department: "HR" },
+        { name: "C", salary: 70000, department: "IT" },
+        { name: "D", salary: 30000, department: "Sales" }
+    ];
+    const container = document.querySelector(".emp")
+    const display = employees.forEach(emp => {
+        const p = document.createElement("p")
+        p.textContent = `${emp.name} - ${emp.salary} - ${emp.department}`;
+        container.appendChild(p)
+    });
+    const itEmp = employees.filter(emp => emp.department == "IT");
+    itEmp.forEach(emp => {
+        const p = document.createElement("p")
+        p.textContent = `IT employees : ${emp.name}`;
+        container.appendChild(p)
+    })
+    const highestSalary = employees.filter(emp => emp.salary > 40000)
+    highestSalary.forEach(emp => {
+        const p = document.createElement("p")
+        p.textContent = `Highest salary employee: ${emp.name} with ${emp.salary}`
+        container.appendChild(p)
+    })
+    const totalSal = employees.reduce((total, emp) => {
+        return total + emp.salary
+    }, 0)
+    let avg = totalSal / employees.length;
+    console.log(avg);
+    const p = document.createElement("p")
+    p.textContent = `Avarage salary od all the employees: ${avg}`
+    container.appendChild(p)
+</script>
+
+</html>
