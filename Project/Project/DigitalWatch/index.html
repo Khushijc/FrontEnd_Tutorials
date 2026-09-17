@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <!-- FontAwesome for the navigation icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at 50% 30%, #1e2433 0%, #0d1117 100%);
+            font-family: 'Inter', sans-serif;
+            color: #f3f4f6;
+            overflow: hidden;
+        }
+
+        /* Ambient glow backdrop behind clock */
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%);
+            filter: blur(40px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .clockHolder {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            background: rgba(22, 27, 34, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 2.2rem 2.4rem;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .clockHolder:hover {
+            box-shadow: 
+                0 30px 60px -12px rgba(0, 0, 0, 0.75),
+                0 0 30px rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.25);
+        }
+
+        .timeHolder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.8rem;
+        }
+
+        .timeOption {
+            display: flex;
+            list-style: none;
+            gap: 1.25rem;
+            background: rgba(13, 17, 23, 0.65);
+            padding: 8px 16px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .timeOption li {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.15rem;
+            color: #94a3b8;
+            padding: 10px 14px;
+            border-radius: 9999px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeOption li:hover,
+        .timeOption li.active {
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.12);
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* Modern tooltip for data-title */
+        .timeOption li::after {
+            content: attr(data-title);
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.85);
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 4px 8px;
+            border-radius: 6px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .timeOption li:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .mainDiv {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 1rem;
+            background: rgba(13, 17, 23, 0.85);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #clock {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(2rem, 8vw, 3.25rem);
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #38bdf8;
+            text-shadow: 
+                0 0 20px rgba(56, 189, 248, 0.45),
+                0 0 40px rgba(56, 189, 248, 0.2);
+            user-select: none;
+        }
+
+        /* Responsive refinements */
+        @media (max-width: 480px) {
+            .clockHolder {
+                padding: 1.5rem 1.2rem;
+            }
+            .timeOption {
+                gap: 0.75rem;
+            }
+            .timeOption li {
+                padding: 8px 10px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clockHolder">
+            <div class="timeHolder">
+                <div class="timeOption">
+                    <li class="fas fa-clock active" data-title="Time"></li>
+                    <!-- <li class="fas fa-stopwatch" data-title="StopWatch"></li>
+                    <li class="far fa-clock" data-title="CountDown"></li> -->
+                </div>
+                <div class="mainDiv">
+                    <p id="clock">00:00:00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CurrentTime = () => {
+            // Fixes runtime typo (new Date instead of new Data and variable casing)
+            let curT = new Date().toLocaleTimeString();
+            document.getElementById("clock").innerHTML = curT;
+        };
+
+        CurrentTime();
+        setInterval(() => {
+            CurrentTime();
+        }, 1000);
+    </script>
+</body>
+
+</html>

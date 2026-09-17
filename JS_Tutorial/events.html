@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rectangle{
+            height: 160px;
+            width: 190px;
+            background-color: black;
+        }
+        .addTransition{
+            border-radius: 50%;
+        }
+        .addTransition2{
+            border-radius: 50%;
+            background-color: yellow;
+            translate: -30rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>Inline event</h1>
+    <button onclick="alert('hellow')">greeting</button>
+    <button ondblclick="alert('namsteee')">greeting again</button>
+
+    <h1>DOM event handler</h1>
+    <button id="mybtn">greeting</button>
+    <button id="mybtn1">greeting again</button>
+
+    <h1>addEventListner Event Handler</h1>
+    <button id="mybtn2">Greeting</button>
+    <button id="mybtn3">Greeting again</button> -->
+    <div class="rectangle"></div>
+    <button id="myButton">Click me</button>
+    <script>
+        // document.getElementById("mybtn").onclick=()=>{
+        //     alert('hellow')
+        // }
+        // document.getElementById("mybtn1").onmouseover=()=>{
+        //     alert('namstee')
+        // }
+        // document.getElementById("mybtn2").addEventListener("click",()=>{
+        //     alert("addEventListner Triggers")
+        // })
+        // document.getElementById("mybtn3").addEventListener("mouseover",()=>{
+        //     alert("mouseover triggers")
+        // })
+        let reactdiv=document.querySelector(".rectangle");
+        let myButton=document.getElementById("myButton");
+        const handlemouse1=()=>{
+            console.log("click")
+            reactdiv.style.backgroundColor="yellow"; 
+        };
+        const handlemouse2=()=>{
+            console.log("double click")
+            reactdiv.classList.add("addTransition"); 
+        };
+        const handlemouse3=()=>{
+            console.log("mouse over")
+            reactdiv.classList.add("addTransition2"); 
+        };
+        myButton.addEventListener("click",handlemouse1)
+        myButton.addEventListener("dblclick",handlemouse2)
+        reactdiv.addEventListener("mouseover",handlemouse3)
+    </script>
+</body>
+</html>

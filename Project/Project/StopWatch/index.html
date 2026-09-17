@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            padding: 20px;
+        }
+
+        .countdown {
+            font-size: 4rem;
+            font-weight: 700;
+            min-height: 1.2em;
+            margin-bottom: 24px;
+            color: #111827;
+            text-align: center;
+        }
+
+        .button {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .button div {
+            padding: 10px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+
+        .button div:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .button div:active {
+            transform: translateY(1px);
+        }
+
+        .start_btn {
+            background-color: #10b981 !important;
+            color: #ffffff !important;
+        }
+
+        .stop_btn {
+            background-color: #ef4444 !important;
+            color: #ffffff !important;
+        }
+
+        .reset_btn {
+            background-color: #f59e0b !important;
+            color: #ffffff !important;
+        }
+
+        .time_btn {
+            background-color: #3b82f6 !important;
+            color: #ffffff !important;
+        }
+
+        .clear_btn {
+            background-color: #6b7280 !important;
+            color: #ffffff !important;
+        }
+
+        .resetvalue {
+            min-height: 24px;
+            font-size: 1.1rem;
+            color: #4b5563;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="countdown"></p>
+    <div class="button">
+        <div class="start_btn">Start</div>
+        <div class="reset_btn">Reset</div>
+        <div class="stop_btn">Stop</div>
+        <div class="time_btn">Timer</div>
+        <div class="clear_btn">Clear</div>
+    </div>
+    <div class="resetvalue"></div>
+    <script>
+        const CountDown = document.querySelector(".countdown");
+        const ResetValue = document.querySelector(".resetvalue");
+        let startCount = 0;
+        let intervalID = null;
+
+        const startTimer = () => {
+            if (intervalID) clearInterval(intervalID);
+            intervalID = setInterval(() => {
+                CountDown.innerText = startCount++;
+            }, 1000);
+        };
+
+        const stopTimer = () => {
+            Timer()
+            clearInterval(intervalID);
+
+        };
+
+        const ResetTimer = () => {
+            startCount = 0
+            CountDown.innerHTML = startCount;
+            clearInterval(startCount)
+        };
+
+        const Timer = () => {
+            const para = document.createElement("p")
+            para.innerText = `The stop time is ${startCount - 1}`
+            ResetValue.append(para)
+        };
+
+        const clearTimer = () => {
+            ResetValue.innerHTML = null;
+        };
+
+        document.querySelector(".start_btn").addEventListener("click", startTimer);
+        document.querySelector(".reset_btn").addEventListener("click", ResetTimer);
+        document.querySelector(".stop_btn").addEventListener("click", stopTimer);
+        document.querySelector(".time_btn").addEventListener("click", Timer);
+        document.querySelector(".clear_btn").addEventListener("click", clearTimer);
+    </script>
+</body>
+
+</html>
