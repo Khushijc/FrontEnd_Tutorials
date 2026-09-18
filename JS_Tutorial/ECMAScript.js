@@ -23,9 +23,29 @@
 // const newObj=Object.fromEntries(entries)
 // console.log(newObj)
 
-const mySymbol=Symbol("khushi")
-// console.log(typeof mySymbol);
-console.log(mySymbol.description)
+// const mySymbol=Symbol("khushi")
+// // console.log(typeof mySymbol);
+// console.log(mySymbol.description)
 
-const maxNumber=Number.MAX_SAFE_INTEGER
-console.log(maxNumber);
+// const maxNumber=Number.MAX_SAFE_INTEGER
+// console.log(maxNumber);
+
+// let favNum=0
+// userfavNum=favNum ?? 10
+// console.log(userfavNum);
+
+// const person={
+//     name:'khushi',
+//     address:{
+//         city:'pune',
+//         coordinates:{
+//             latitude:30.233,
+//             longitude:45.34
+//         }
+//     }
+// }
+// const lati=person.address?.coordinates?.latitude ?? "not present"
+// console.log(lati);
+const arr=[1,2,1,3,8,6,7,9]
+console.log(arr.findLast((e)=>e<7))
+console.log(arr.findLastIndex((e)=>e))

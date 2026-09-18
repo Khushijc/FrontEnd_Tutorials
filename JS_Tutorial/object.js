@@ -3,17 +3,17 @@
 //     name:"laptop",
 //     version:4.0
 // }
-// let idType="CollegeId"
-// const validation={
-//     [idType]:"123abc",
-//     srNo:101,
-//     age:21,
-//     isStudent:true,
-//     greet:()=>{
-//         console.log(this)
-//         //console.log(`Type: ${idType} have the id: ${validation[idType]} with age: ${validation.age} is valid!;)`)
-//     },
-// }
+let idType="CollegeId"
+const validation={
+    [idType]:"123abc",
+    srNo:101,
+    age:21,
+    isStudent:true,
+    greet:()=>{
+        console.log(this)
+        //console.log(`Type: ${idType} have the id: ${validation[idType]} with age: ${validation.age} is valid!;)`)
+    },
+}
 // validation.job="mern dev"
 // validation.age=20
 // console.log(validation)
