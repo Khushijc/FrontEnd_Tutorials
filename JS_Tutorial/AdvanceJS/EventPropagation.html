@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <div id="outer">Outer
+            <div id="middle">Middle
+                <div id="inner">Inner</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const outerCall = (event) => {
+            console.table({
+                Description: "I am outer container",
+                Target: event.target,
+                CurrentEvent: event.currentTarget,
+            })
+        }
+        const middleCall = (event) => {
+            console.table({
+                Description: "I am middle container",
+                Target: event.target,
+                CurrentEvent: event.currentTarget,
+            })
+           // event.stopPropagation()
+        }
+        const innerCall = (event) => {
+            console.table({
+                Description: "I am inner container",
+                Target: event.target,
+                CurrentEvent: event.currentTarget,
+            })
+           // event.stopPropagation()
+        }
+
+        document.getElementById("outer").addEventListener("click", outerCall,true)
+        document.getElementById("middle").addEventListener("click", middleCall,true)
+        document.getElementById("inner").addEventListener("click", innerCall,true)
+    </script>
+</body>
+
+</html>

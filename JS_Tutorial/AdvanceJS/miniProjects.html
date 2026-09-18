@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: black;color: beige;">
+    <!-- <p>Which programming language ypu like the most?</p>
+    <br>
+    <ui id="mylist">
+        <li>Javascript</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>React</li>
+    </ui>
+    <p id="listvalue"></p> -->
+    <h1 style="display: flex;text-align: center;justify-content: center">Event delegation - Periodic table</h1>
+    <section class="mainbody" style="display: flex;text-align: center;justify-content: space-between"></section>
+    <script>
+        const createPeriodicElement=(Symbol,atomicNo,name)=>{
+            const element=document.createElement("div");
+            element.classList.add("element");
+            element.innerHTML=Symbol;
+            element.setAttribute("data-atomic-number",atomicNo)
+            element.setAttribute("data-atomic-name",name)
+            return element;
+        }
+
+        const handleElementClick=(event)=>{
+            const target=event.target
+            if(target.classList.contains("element")){
+                const AtomicNo=target.getAttribute("data-atomic-number")
+                const AtomicName=target.getAttribute("data-atomic-name")
+                alert(`Atomic number : ${AtomicNo}\nAtomic name : ${AtomicName}`)
+            }
+        }
+
+        function initializedPeriodicTable(){
+            const mainbody=document.querySelector(".mainbody")
+            for(let i=1;i<=50;i++){
+                const element=createPeriodicElement(`Elem${i}`,i,`Element${i}`)
+                mainbody.append(element)
+            }
+            mainbody.addEventListener("click",handleElementClick)
+        }
+
+        initializedPeriodicTable();
+        // const getListValue=(event)=>{
+        //     console.log(event.target)
+        //     document.getElementById("listvalue").innerHTML=`my fav language is : ${event.target.textContent}`;
+        // }
+        // document.getElementById("mylist").addEventListener("click",getListValue)
+    </script>
+</body>
+</html>

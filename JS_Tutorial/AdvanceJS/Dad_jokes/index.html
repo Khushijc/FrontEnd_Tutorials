@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Dad jokes!
+        </h1>
+        <section class="api_body"></section>
+        <button id="fetchjoke">get another joke</button>
+    </div>
+    <script>
+        const apiBody = document.querySelector(".api_body")
+        const apiUrl = "https://icanhazdadjoke.com/"
+
+        const getJoke = () => {
+            const response = fetch(apiUrl, {
+                headers: {
+                    Accept: "application/json",
+                },
+            })
+                .then((res) => {
+                    console.log(res)
+                    return res.json()
+                }).then((data) => {
+                    console.log(data.joke)
+                    apiBody.innerHTML=data.joke
+                }).catch((err) => console.log(err))
+
+        }
+        getJoke();
+        document.getElementById("fetchjoke").addEventListener("click", getJoke)
+    </script>
+</body>
+
+</html>
